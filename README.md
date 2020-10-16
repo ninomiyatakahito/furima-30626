@@ -23,7 +23,7 @@
 
 | Column           | Type       | Options                      |
 | ---------------- | ---------- | -----------                  |
-| item             | string     | null:false,foreign_key:true  |
+| item             | references | null:false,foreign_key:true  |
 | user             | references | null:false,foreign_key:true  |
 
 ### Association
@@ -39,10 +39,10 @@
 | ---------------- | ---------- | -----------                  |
 | name             | string     | null: false                  |
 | description      | text       | null: false                  |
-| category         | integer    | null: false                  |
-| condition        | integer    | null: false                  |
+| category_id      | integer    | null: false                  |
+| condition_id     | integer    | null: false                  |
 | shopping_cost_id | integer    | null: false                  |
-| prefecture       | integer    | null: false                  |
+| prefecture_id    | integer    | null: false                  |
 | shopping_days_id | integer    | null: false                  |
 | price            | integer    | null: false                  |
 | user             | references | null: false,foreign_key:true |
@@ -63,10 +63,10 @@
 | Column           | Type       | Options                      |
 | ---------------- | ---------- | -----------                  |
 | post_code        | string     | null: false                  |
-| prefecture       | string     | null: false                  |
+| prefecture_id    | string     | null: false                  |
 | city             | siring     | null: false                  |
 | street           | string     | null: false                  |
-| building_name    | string     | null: false                  |
+| building_name    | string     |                              |
 | phone_number     | string     | null: false                  |
 | purchase         | references | null: false,foreign_key:true |
 
