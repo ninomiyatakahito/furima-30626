@@ -1,4 +1,4 @@
-# テーブル設計
+# テーブル設計purchase
 
 ## users テーブル
 
@@ -49,8 +49,8 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :purchases
+- belongs_to :user
+- has_one :purchase
 
 
 
@@ -68,6 +68,6 @@
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
 
 
