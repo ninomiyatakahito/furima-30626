@@ -50,7 +50,7 @@
 ### Association
 
 - belongs_to :users
-- belongs_to :purchases
+- has_one :purchases
 
 
 
