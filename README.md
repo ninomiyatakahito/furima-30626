@@ -1,24 +1,43 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column           | Type       | Options                      |
+| ---------------- | ---------- | -----------                  |
+| nickname         | string     | null: false                  |
+| email            | string     | null: false                  |
+| password         | string     | null: false                  |
+| last_name        | string     | null: false                  |
+| first_name       | string     | null: false                  |
+| last_name_kana   | string     | null: false                  |
+| first_name_kana  | string     | null: false                  |
+| birthday         | string     | null: false                  |
 
-* Ruby version
 
-* System dependencies
+## purchases テーブル
+| item             | string     | null:false,foreign_key:true  |
+| user             | references | null:false,foreign_key:true  |
 
-* Configuration
+## items テーブル
 
-* Database creation
+| name             | string     | null: false                  |
+| description      | text       | null: false                  |
+| category         | integer    | null: false                  |
+| condition        | integer    | null: false                  |
+| shopping_cost_id | integer    | null: false                  |
+| prefecture       | integer    | null: false                  |
+| shopping_days_id | integer    | null: false                  |
+| price            | integer    | null: false                  |
+| user             | references | null: false,foreign_key:true |
 
-* Database initialization
 
-* How to run the test suite
+## addresses テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| post_code        | string     | null: false                  |
+| prefecture       | string     | null: false                  |
+| city             | siring     | null: false                  |
+| street           | string     | null: false                  |
+| building_name    | string     | null: false                  |
+| phone_number     | string     | null: false                  |
+| purchase         | references | null: false,foreign_key:true |
 
-* Deployment instructions
-
-* ...
