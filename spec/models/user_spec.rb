@@ -73,11 +73,9 @@ describe User do
       end
 
       it "emailは、@を含む必要があること" do
-        @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email = @user.email
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        @user.birthday = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
 
 
