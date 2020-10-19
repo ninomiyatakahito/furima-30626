@@ -32,7 +32,6 @@
 - belongs_to :item
 - has_one :address
 
-
 ## items テーブル
 
 | Column           | Type       | Options                      |
@@ -52,8 +51,6 @@
 - belongs_to :user
 - has_one :purchase
 
-
-
 ## addresses テーブル
 
 | Column           | Type       | Options                      |
@@ -69,5 +66,3 @@
 ### Association
 
 - belongs_to :purchase
-
-
