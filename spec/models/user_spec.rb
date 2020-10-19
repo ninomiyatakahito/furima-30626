@@ -9,6 +9,7 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmationとlast_name,first_name,last_name_kana,first_name_kana,birthdayが存在すれば登録できる" do
         expect(@user).to be_valid
       end
+      
     end
     
     context '新規登録がうまくいかないとき' do
@@ -28,12 +29,6 @@ describe User do
         @user.password = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
-      end
-
-      it "encrypted_passwordが空では登録できない" do
-        @user.encrypted_password = nil
-        @user.valid?
-        expect(@user.errors.full_messages).to include()
       end
 
       it "first_nameは空でないと保存できない" do
@@ -66,18 +61,20 @@ describe User do
 
       it "重複したemailが存在する場合登録できないこと" do
         @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email = @user.email
+        another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include("Password confirmation can't be blank")
       end
+
+
+
+
 
       it "emailは、@を含む必要があること" do
         @user.birthday = "aaa"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Birthday can't be blank")
+        expect(@user.errors.full_messages).to include("Password confirmation can't be blank")
       end
-
 
             # 確認用パスワードが必要であるテスト ▼
 
@@ -86,9 +83,15 @@ describe User do
         another_user = FactoryBot.build(:user)
         another_user.password = @user.password
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include("Password confirmation can't be blank")
       end
 
+     it "passwordとpassword_confirmationが不一致では登録できないこと" do
+        @user.password = "123456"
+        @user.password_confirmation = "1234567"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
 
 
 
