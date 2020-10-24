@@ -78,7 +78,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Category must be other than 0")
     end
     it "condition_idが0だと登録できない" do
-      @item.condition_id = "0"
+      @item.condition_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition must be other than 0")
     end
