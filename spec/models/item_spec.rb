@@ -5,7 +5,6 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品機能がうまくいくとき' do
-
     it "name, description, category_id, ondition_id, shopping_cost_id, prefecture_id, shopping_days_id, price,imageが存在すれば登録できる" do
       expect(@item).to be_valid
     end
