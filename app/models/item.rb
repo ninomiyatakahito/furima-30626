@@ -5,8 +5,10 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shopping_cost
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :shopping_days
-  has_one_attached :image
-  belongs_to :user
+  has_one_attached       :image
+  belongs_to             :user
+  has_one                :purchase
+
   validates :name, :description, :category_id, :condition_id,
             :shopping_cost_id, :prefecture_id, :shopping_days_id, :price, :image, presence: true
   validates :category_id, :condition_id, :shopping_cost_id, :prefecture_id, :shopping_days_id, numericality: { other_than: 0 }
