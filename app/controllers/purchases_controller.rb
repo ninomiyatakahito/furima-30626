@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
+
 
   def index
     @purchase_address = PurchaseAddress.new
@@ -37,10 +39,6 @@ class PurchasesController < ApplicationController
 
   def move_to_index
     redirect_to root_path if @item.user_id == user_signed_in? && current_user.id
-  end
-
-  def move_to_sold_out
-    redirect_to root_path if @item.purchase.present?
   end
 
 
