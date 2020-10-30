@@ -15,10 +15,6 @@ RSpec.describe PurchaseAddress, type: :model do
       expect(@purchase_address).to be_valid
     end
 
-    it 'tokenがあれば保存ができること' do
-      expect(@purchase_address).to be_valid
-    end
-
     it 'tokenが空では登録できないこと' do
       @purchase_address.token = ''
       @purchase_address.valid?
@@ -65,6 +61,12 @@ RSpec.describe PurchaseAddress, type: :model do
       @purchase_address.phone_number = '000-2345-3445'
       @purchase_address.valid?
       expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
+    end
+
+    it 'phone_numberが12桁以上だと保存できないこと' do
+      @purchase_address.phone_number = '000-1234-56789'
+      @purchase_address.valid?
+      expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
     end
   end
 end
