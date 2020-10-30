@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create, :move_to_index, :move_to_sold_out]
-  before_action :move_to_index, only: [:index, :show]
+  before_action :move_to_index, only: [:index]
   before_action :move_to_sold_out, only: [:index]
 
   def index
@@ -38,7 +38,6 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
       redirect_to root_path
     end
   end
