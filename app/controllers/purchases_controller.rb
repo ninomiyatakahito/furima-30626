@@ -3,6 +3,7 @@ class PurchasesController < ApplicationController
   before_action :move_to_index, only: [:index, :show]
   before_action :move_to_sold_out, only: [:index]
 
+  
   def index
     @purchase_address = PurchaseAddress.new
   end
