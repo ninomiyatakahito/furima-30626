@@ -38,10 +38,12 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to root_path
+    if @item.user_id == user_signed_in? && current_user.id 
+      redirect_to root_path 
     end
   end
+
+
 
   def move_to_sold_out
     if @item.purchase.present? 
