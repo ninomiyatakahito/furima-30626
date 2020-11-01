@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :set_item, only: [:index, :create, :move_to_index, :move_to_sold_out]
-  before_action :move_to_index, only: [:index, :show]
+  before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
   before_action :move_to_sold_out, only: [:index]
 
   
@@ -26,7 +26,7 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_b8a655032665d807e924a49f"
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_params[:token],
@@ -39,7 +39,7 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    if @item.user_id == user_signed_in? && current_user.id 
+    if @item.user_id == current_user.id && user_signed_in?
       redirect_to root_path 
     end
   end
