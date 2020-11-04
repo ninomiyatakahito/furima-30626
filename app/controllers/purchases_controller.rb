@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
   
   def index
     @purchase_address = PurchaseAddress.new
+    redirect_to root_path if current_user.id == @item.user_id
   end
   
   def create
@@ -44,6 +45,14 @@ class PurchasesController < ApplicationController
       redirect_to root_path 
     end
   end
+
+  def move_to_index
+    if @item.user_id == current_user.id && user_signed_in?
+      redirect_to root_path 
+    end
+  end
+
+  
 
   def move_to_signed_in
     unless user_signed_in?
